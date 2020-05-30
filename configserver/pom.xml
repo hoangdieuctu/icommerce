@@ -10,10 +10,10 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.icommerce.config</groupId>
+    <groupId>com.icommerce</groupId>
     <artifactId>configserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>configserver</name>
+    <name>Config Server</name>
 
     <properties>
         <java.version>1.8</java.version>

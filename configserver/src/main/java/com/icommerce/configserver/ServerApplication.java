@@ -1,4 +1,4 @@
-package com.icommerce.config.configserver;
+package com.icommerce.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
