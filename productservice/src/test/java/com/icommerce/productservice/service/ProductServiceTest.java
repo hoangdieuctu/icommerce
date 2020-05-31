@@ -34,7 +34,6 @@ public class ProductServiceTest {
 
     @Before
     public void setup() {
-        when(product.getId()).thenReturn(1);
         when(product.getQtyInStock()).thenReturn(2);
 
         when(productRepository.findById(1)).thenReturn(Optional.of(product));
