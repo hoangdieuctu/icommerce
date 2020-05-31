@@ -1,8 +1,8 @@
 package com.icommerce.productservice.advice;
 
 import com.icommerce.productservice.dto.response.ErrorResponse;
-import com.icommerce.productservice.exception.OutOfQtyException;
 import com.icommerce.productservice.exception.ProductNotFoundException;
+import com.icommerce.productservice.exception.ProductOutOfQtyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,6 @@ public class CustomExceptionHandler {
 
     private Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
-
     @Value("${error.productNotFound.code}")
     private int productNotFoundCode;
 
@@ -30,11 +29,11 @@ public class CustomExceptionHandler {
     @Value("${error.exception.message}")
     private String exceptionMessage;
 
-    @Value("${error.outOfQty.code}")
-    private int productQtyCode;
+    @Value("${error.productOutOfQty.code}")
+    private int productOutOfQtyCode;
 
-    @Value("${error.outOfQty.message}")
-    private String productQtyMessage;
+    @Value("${error.productOutOfQty.message}")
+    private String productOutOfQtyMessage;
 
     @ResponseBody
     @ExceptionHandler(value = ProductNotFoundException.class)
@@ -48,12 +47,12 @@ public class CustomExceptionHandler {
     }
 
     @ResponseBody
-    @ExceptionHandler(value = OutOfQtyException.class)
+    @ExceptionHandler(value = ProductOutOfQtyException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleProductOutOfQtyException(OutOfQtyException exception) {
+    public ErrorResponse handleProductOutOfQtyException(ProductOutOfQtyException exception) {
         ErrorResponse response = new ErrorResponse();
-        response.setErrorCode(productQtyCode);
-        response.setErrorMessage(productQtyMessage);
+        response.setErrorCode(productOutOfQtyCode);
+        response.setErrorMessage(productOutOfQtyMessage);
 
         return response;
     }

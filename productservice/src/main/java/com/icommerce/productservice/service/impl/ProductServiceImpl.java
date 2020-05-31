@@ -2,11 +2,13 @@ package com.icommerce.productservice.service.impl;
 
 import com.icommerce.productservice.dto.request.*;
 import com.icommerce.productservice.dto.response.ProductResponse;
-import com.icommerce.productservice.exception.OutOfQtyException;
+import com.icommerce.productservice.exception.ProductOutOfQtyException;
 import com.icommerce.productservice.exception.ProductNotFoundException;
 import com.icommerce.productservice.model.Product;
 import com.icommerce.productservice.repository.ProductRepository;
 import com.icommerce.productservice.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+    private static Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Autowired
     private ProductRepository productRepository;
@@ -83,7 +87,7 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
         return products;
     }
@@ -102,6 +106,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponse buyProduct(ProductRequest request) {
         Optional<Product> optProduct = productRepository.findById(request.getProductId());
         if (!optProduct.isPresent()) {
+            logger.debug("Product not found: {}", request.getProductId());
             throw new ProductNotFoundException();
         }
 
@@ -109,7 +114,8 @@ public class ProductServiceImpl implements ProductService {
         int qtyInStock = product.getQtyInStock();
 
         if (qtyInStock < request.getQty()) {
-            throw new OutOfQtyException();
+            logger.debug("Out of qty: {}", request.getProductId());
+            throw new ProductOutOfQtyException();
         }
 
         int remainingQty = qtyInStock - request.getQty();
