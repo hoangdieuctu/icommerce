@@ -45,6 +45,9 @@ public class ProductControllerTest {
     private int productOutOfQtyCode = 10011;
     private String productOutOfQtyMessage = "Product qty is not enough";
 
+    private int exceptionCode = 10000;
+    private String exceptionMessage = "Internal error";
+
     @Before
     public void setup() {
         CustomExceptionHandler customExceptionHandler = new CustomExceptionHandler();
@@ -56,6 +59,9 @@ public class ProductControllerTest {
 
         ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyCode", productOutOfQtyCode);
         ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyMessage", productOutOfQtyMessage);
+
+        ReflectionTestUtils.setField(customExceptionHandler, "exceptionCode", exceptionCode);
+        ReflectionTestUtils.setField(customExceptionHandler, "exceptionMessage", exceptionMessage);
 
         Product product = new Product();
         product.setId(1);
@@ -149,5 +155,16 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.productId", Matchers.is(1)))
                 .andExpect(jsonPath("$.qty", Matchers.is(3)))
                 .andExpect(jsonPath("$.remainingQty", Matchers.is(2)));
+    }
+
+    @Test
+    public void testBuyProductInternalServerError() throws Exception {
+        when(productService.buyProduct(any())).thenThrow(new RuntimeException("Unit test exception."));
+
+        mockMvc.perform(post("/api/v1/product/buy").contentType(MediaType.APPLICATION_JSON).content("{}"))
+                .andExpect(status().is5xxServerError())
+                .andExpect(jsonPath("$.*", Matchers.hasSize(2)))
+                .andExpect(jsonPath("$.errorCode", Matchers.is(exceptionCode)))
+                .andExpect(jsonPath("$.errorMessage", Matchers.is(exceptionMessage)));
     }
 }

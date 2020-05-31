@@ -56,12 +56,12 @@ public class ProductServiceImpl implements ProductService {
             // from the select box in range
             PriceCriteria price = criteria.getPrice();
             if (price != null) {
-                Double from = price.getFrom();
+                Long from = price.getFrom();
                 if (from != null) {
                     predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("buyPrice"), from));
                 }
 
-                Double to = price.getTo();
+                Long to = price.getTo();
                 if (to != null) {
                     predicates.add(criteriaBuilder.lessThan(root.get("buyPrice"), to));
                 }

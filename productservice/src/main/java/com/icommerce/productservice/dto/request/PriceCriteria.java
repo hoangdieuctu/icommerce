@@ -2,22 +2,22 @@ package com.icommerce.productservice.dto.request;
 
 public class PriceCriteria {
 
-    private Double from;
-    private Double to;
+    private Long from;
+    private Long to;
 
-    public Double getFrom() {
+    public Long getFrom() {
         return from;
     }
 
-    public void setFrom(Double from) {
+    public void setFrom(Long from) {
         this.from = from;
     }
 
-    public Double getTo() {
+    public Long getTo() {
         return to;
     }
 
-    public void setTo(Double to) {
+    public void setTo(Long to) {
         this.to = to;
     }
 }
