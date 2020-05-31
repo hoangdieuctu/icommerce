@@ -18,7 +18,7 @@ public class ProductGenerator {
     @Autowired
     private ProductRepository productRepository;
 
-    @Value("${generator.products}")
+    @Value("${generator.products:#{null}}")
     private String products;
 
     @PostConstruct

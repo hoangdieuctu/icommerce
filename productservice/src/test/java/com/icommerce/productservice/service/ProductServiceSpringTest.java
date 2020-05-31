@@ -6,19 +6,21 @@ import com.icommerce.productservice.dto.request.ProductCriteria;
 import com.icommerce.productservice.dto.request.Sort;
 import com.icommerce.productservice.model.Product;
 import com.icommerce.productservice.repository.ProductRepository;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@ActiveProfiles(value = "test")
 public class ProductServiceSpringTest {
 
     @Autowired
@@ -38,10 +40,13 @@ public class ProductServiceSpringTest {
         productRepository.save(product);
     }
 
+    @After
+    public void teardown() {
+        productRepository.deleteAll();
+    }
+
     @Before
     public void setup() {
-        productRepository.deleteAll();
-
         addProduct("MacBook 2017", "Apple", "White", 43000000L, 5);
         addProduct("MacBook 2013", "Apple", "White", 30000000L, 2);
         addProduct("Acer Aspire", "Acer", "Black", 50000000L, 10);
