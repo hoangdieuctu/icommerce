@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,6 +122,7 @@ public class ProductServiceImpl implements ProductService {
         int remainingQty = qtyInStock - request.getQty();
 
         product.setQtyInStock(remainingQty);
+        product.setUpdatedTime(new Date());
         productRepository.save(product);
 
         ProductResponse response = new ProductResponse();

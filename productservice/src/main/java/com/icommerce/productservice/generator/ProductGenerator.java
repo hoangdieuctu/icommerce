@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Component
 public class ProductGenerator {
@@ -40,6 +41,10 @@ public class ProductGenerator {
             product.setDescription(parts[4]);
             product.setBuyPrice(Long.parseLong(parts[5]));
             product.setQtyInStock(Integer.parseInt(parts[6]));
+
+            Date now = new Date();
+            product.setCreatedTime(now);
+            product.setUpdatedTime(now);
 
             productRepository.save(product);
         }

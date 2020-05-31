@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity(name = "product")
 public class Product {
@@ -24,6 +25,10 @@ public class Product {
 
     @Column(nullable = false)
     private int qtyInStock;
+
+    private Date createdTime;
+
+    private Date updatedTime;
 
     public int getId() {
         return id;
@@ -79,5 +84,21 @@ public class Product {
 
     public void setQtyInStock(int qtyInStock) {
         this.qtyInStock = qtyInStock;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Date getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }
