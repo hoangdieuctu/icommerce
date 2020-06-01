@@ -16,15 +16,13 @@ public class ShoppingCartController {
 
     @ResponseBody
     @GetMapping
-    public ShoppingCart getShoppingCart() {
-        int userId = 1;
+    public ShoppingCart getShoppingCart(@RequestHeader("userId") int userId) {
         return shoppingCartService.getCurrentShoppingCart(userId);
     }
 
     @ResponseBody
     @PostMapping
-    public ShoppingCart addProduct(@RequestBody ProductRequest request) {
-        int userId = 1;
+    public ShoppingCart addProduct(@RequestHeader("userId") int userId, @RequestBody ProductRequest request) {
         return shoppingCartService.addProduct(userId, request);
     }
 }

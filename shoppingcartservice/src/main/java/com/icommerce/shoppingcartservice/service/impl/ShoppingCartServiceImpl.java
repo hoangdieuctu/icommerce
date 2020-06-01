@@ -2,7 +2,6 @@ package com.icommerce.shoppingcartservice.service.impl;
 
 import com.icommerce.shoppingcartservice.dto.request.ProductRequest;
 import com.icommerce.shoppingcartservice.dto.response.ProductResponse;
-import com.icommerce.shoppingcartservice.exception.ShoppingCartException;
 import com.icommerce.shoppingcartservice.model.ProductCart;
 import com.icommerce.shoppingcartservice.model.ShoppingCart;
 import com.icommerce.shoppingcartservice.model.ShoppingStatus;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,10 +57,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCart.setStatus(ShoppingStatus.NEW);
             shoppingCart.setCreatedTime(now);
 
-            List<ProductCart> productCarts = new ArrayList<>();
-            productCarts.add(productCart);
-
-            shoppingCart.setProducts(productCarts);
+            shoppingCart.addProduct(productCart);
         } else {
             shoppingCart.addProduct(productCart);
         }
