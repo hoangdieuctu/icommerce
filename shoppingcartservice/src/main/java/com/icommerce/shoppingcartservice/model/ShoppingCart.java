@@ -1,6 +1,8 @@
 package com.icommerce.shoppingcartservice.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "shopping_cart")
@@ -8,7 +10,7 @@ public class ShoppingCart {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @Column(nullable = false)
     private Integer userId;
@@ -18,14 +20,16 @@ public class ShoppingCart {
     private ShoppingStatus status;
 
     @JoinColumn(name = "shoppingCartId")
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ProductCart> products;
 
-    public int getId() {
+    private Date createdTime;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,5 +55,21 @@ public class ShoppingCart {
 
     public void setProducts(List<ProductCart> products) {
         this.products = products;
+    }
+
+    public void addProduct(ProductCart productCart) {
+        if (products == null) {
+            products = new ArrayList<>();
+        }
+
+        products.add(productCart);
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }

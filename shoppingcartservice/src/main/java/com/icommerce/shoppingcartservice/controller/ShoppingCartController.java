@@ -18,7 +18,7 @@ public class ShoppingCartController {
     @GetMapping
     public ShoppingCart getShoppingCart() {
         int userId = 1;
-        return shoppingCartService.getByUser(userId);
+        return shoppingCartService.getCurrentShoppingCart(userId);
     }
 
     @ResponseBody

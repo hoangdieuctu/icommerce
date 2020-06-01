@@ -35,6 +35,7 @@ public class ProductServiceTest {
     @Before
     public void setup() {
         when(product.getQtyInStock()).thenReturn(2);
+        when(product.getBuyPrice()).thenReturn(10000L);
 
         when(productRepository.findById(1)).thenReturn(Optional.of(product));
         when(productRepository.findById(2)).thenReturn(Optional.empty());
@@ -80,6 +81,7 @@ public class ProductServiceTest {
         Assert.assertEquals(1, response.getProductId());
         Assert.assertEquals(2, response.getQty());
         Assert.assertEquals(0, response.getRemainingQty());
+        Assert.assertEquals(10000L, response.getPrice(), 0);
 
         verify(product).setQtyInStock(0);
         verify(productRepository).save(product);

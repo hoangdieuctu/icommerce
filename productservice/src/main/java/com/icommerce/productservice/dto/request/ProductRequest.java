@@ -19,4 +19,12 @@ public class ProductRequest {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
+    @Override
+    public String toString() {
+        return "ProductRequest{" +
+                "productId=" + productId +
+                ", qty=" + qty +
+                '}';
+    }
 }

@@ -1,8 +1,8 @@
-package com.icommerce.productservice.advice;
+package com.icommerce.shoppingcartservice.advice;
 
-import com.icommerce.productservice.dto.response.ErrorResponse;
-import com.icommerce.productservice.exception.ProductNotFoundException;
-import com.icommerce.productservice.exception.ProductOutOfQtyException;
+import com.icommerce.shoppingcartservice.dto.response.ErrorResponse;
+import com.icommerce.shoppingcartservice.exception.DownstreamException;
+import com.icommerce.shoppingcartservice.exception.ShoppingCartException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,11 +17,11 @@ public class CustomExceptionHandler {
 
     private Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
-    @Value("${error.productNotFound.code}")
-    private int productNotFoundErrCode;
+    @Value("${error.shoppingCart.code}")
+    private int shoppingCartErrCode;
 
-    @Value("${error.productNotFound.message}")
-    private String productNotFoundErrMessage;
+    @Value("${error.shoppingCart.message}")
+    private String shoppingCartErrMessage;
 
     @Value("${error.exception.code}")
     private int genericErrCode;
@@ -29,30 +29,20 @@ public class CustomExceptionHandler {
     @Value("${error.exception.message}")
     private String genericErrMessage;
 
-    @Value("${error.productOutOfQty.code}")
-    private int productOutOfQtyErrCode;
-
-    @Value("${error.productOutOfQty.message}")
-    private String productOutOfQtyErrMessage;
-
     @ResponseBody
-    @ExceptionHandler(value = ProductNotFoundException.class)
+    @ExceptionHandler(value = DownstreamException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleProductNotFoundException(ProductNotFoundException exception) {
-        ErrorResponse response = new ErrorResponse();
-        response.setErrorCode(productNotFoundErrCode);
-        response.setErrorMessage(productNotFoundErrMessage);
-
-        return response;
+    public ErrorResponse handleDownstreamException(DownstreamException exception) {
+        return exception.getErrorResponse();
     }
 
     @ResponseBody
-    @ExceptionHandler(value = ProductOutOfQtyException.class)
+    @ExceptionHandler(value = ShoppingCartException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleProductOutOfQtyException(ProductOutOfQtyException exception) {
+    public ErrorResponse handleShoppingCartException(ShoppingCartException exception) {
         ErrorResponse response = new ErrorResponse();
-        response.setErrorCode(productOutOfQtyErrCode);
-        response.setErrorMessage(productOutOfQtyErrMessage);
+        response.setErrorCode(shoppingCartErrCode);
+        response.setErrorMessage(shoppingCartErrMessage);
 
         return response;
     }

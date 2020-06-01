@@ -105,9 +105,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductResponse buyProduct(ProductRequest request) {
+        logger.info("Buy product: {}", request);
+
         Optional<Product> optProduct = productRepository.findById(request.getProductId());
         if (!optProduct.isPresent()) {
-            logger.debug("Product not found: {}", request.getProductId());
+            logger.warn("Product not found: {}", request.getProductId());
             throw new ProductNotFoundException();
         }
 
@@ -115,7 +117,7 @@ public class ProductServiceImpl implements ProductService {
         int qtyInStock = product.getQtyInStock();
 
         if (qtyInStock < request.getQty()) {
-            logger.debug("Out of qty: {}", request.getProductId());
+            logger.warn("Out of qty: {}", request.getProductId());
             throw new ProductOutOfQtyException();
         }
 
@@ -129,6 +131,7 @@ public class ProductServiceImpl implements ProductService {
         response.setProductId(request.getProductId());
         response.setQty(request.getQty());
         response.setRemainingQty(remainingQty);
+        response.setPrice(product.getBuyPrice());
 
         return response;
     }

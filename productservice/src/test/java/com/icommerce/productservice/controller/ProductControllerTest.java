@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -39,14 +40,16 @@ public class ProductControllerTest {
 
     private MockMvc mockMvc;
 
-    private int productNotFoundErrorCode = 10010;
-    private String productNotFoundErrorMessage = "Product not found";
+    private int productNotFoundErrCode = 10010;
+    private String productNotFoundErrMessage = "Product not found";
 
-    private int productOutOfQtyCode = 10011;
-    private String productOutOfQtyMessage = "Product qty is not enough";
+    private int productOutOfQtyErrCode = 10011;
+    private String productOutOfQtyErrMessage = "Product qty is not enough";
 
-    private int exceptionCode = 10000;
-    private String exceptionMessage = "Internal error";
+    private int genericErrCode = 10000;
+    private String genericErrMessage = "Internal error";
+
+    private Date time = new Date();
 
     @Before
     public void setup() {
@@ -54,14 +57,14 @@ public class ProductControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(productController)
                 .setControllerAdvice(customExceptionHandler).build();
 
-        ReflectionTestUtils.setField(customExceptionHandler, "productNotFoundCode", productNotFoundErrorCode);
-        ReflectionTestUtils.setField(customExceptionHandler, "productNotFoundMessage", productNotFoundErrorMessage);
+        ReflectionTestUtils.setField(customExceptionHandler, "productNotFoundErrCode", productNotFoundErrCode);
+        ReflectionTestUtils.setField(customExceptionHandler, "productNotFoundErrMessage", productNotFoundErrMessage);
 
-        ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyCode", productOutOfQtyCode);
-        ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyMessage", productOutOfQtyMessage);
+        ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyErrCode", productOutOfQtyErrCode);
+        ReflectionTestUtils.setField(customExceptionHandler, "productOutOfQtyErrMessage", productOutOfQtyErrMessage);
 
-        ReflectionTestUtils.setField(customExceptionHandler, "exceptionCode", exceptionCode);
-        ReflectionTestUtils.setField(customExceptionHandler, "exceptionMessage", exceptionMessage);
+        ReflectionTestUtils.setField(customExceptionHandler, "genericErrCode", genericErrCode);
+        ReflectionTestUtils.setField(customExceptionHandler, "genericErrMessage", genericErrMessage);
 
         Product product = new Product();
         product.setId(1);
@@ -71,6 +74,8 @@ public class ProductControllerTest {
         product.setDescription("13 Inch");
         product.setQtyInStock(2);
         product.setBuyPrice(43000000L);
+        product.setCreatedTime(time);
+        product.setUpdatedTime(time);
 
         List<Product> products = new ArrayList<>();
         products.add(product);
@@ -83,6 +88,7 @@ public class ProductControllerTest {
         response.setProductId(1);
         response.setQty(3);
         response.setRemainingQty(2);
+        response.setPrice(10000L);
 
         when(productService.buyProduct(any())).thenReturn(response);
     }
@@ -92,28 +98,32 @@ public class ProductControllerTest {
         mockMvc.perform(post("/api/v1/product/search").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$[0].*", Matchers.hasSize(7)))
+                .andExpect(jsonPath("$[0].*", Matchers.hasSize(9)))
                 .andExpect(jsonPath("$[0].id", Matchers.is(1)))
                 .andExpect(jsonPath("$[0].name", Matchers.is("Apple MacBook")))
                 .andExpect(jsonPath("$[0].branch", Matchers.is("Apple")))
                 .andExpect(jsonPath("$[0].color", Matchers.is("White")))
                 .andExpect(jsonPath("$[0].description", Matchers.is("13 Inch")))
                 .andExpect(jsonPath("$[0].qtyInStock", Matchers.is(2)))
-                .andExpect(jsonPath("$[0].buyPrice", Matchers.is(43000000)));
+                .andExpect(jsonPath("$[0].buyPrice", Matchers.is(43000000)))
+                .andExpect(jsonPath("$[0].createdTime", Matchers.is(time.getTime())))
+                .andExpect(jsonPath("$[0].updatedTime", Matchers.is(time.getTime())));
     }
 
     @Test
     public void testGetProduct() throws Exception {
         mockMvc.perform(get("/api/v1/product/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", Matchers.hasSize(7)))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(9)))
                 .andExpect(jsonPath("$.id", Matchers.is(1)))
                 .andExpect(jsonPath("$.name", Matchers.is("Apple MacBook")))
                 .andExpect(jsonPath("$.branch", Matchers.is("Apple")))
                 .andExpect(jsonPath("$.color", Matchers.is("White")))
                 .andExpect(jsonPath("$.description", Matchers.is("13 Inch")))
                 .andExpect(jsonPath("$.qtyInStock", Matchers.is(2)))
-                .andExpect(jsonPath("$.buyPrice", Matchers.is(43000000)));
+                .andExpect(jsonPath("$.buyPrice", Matchers.is(43000000)))
+                .andExpect(jsonPath("$.createdTime", Matchers.is(time.getTime())))
+                .andExpect(jsonPath("$.updatedTime", Matchers.is(time.getTime())));
     }
 
     @Test
@@ -121,8 +131,8 @@ public class ProductControllerTest {
         mockMvc.perform(get("/api/v1/product/2"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(2)))
-                .andExpect(jsonPath("$.errorCode", Matchers.is(productNotFoundErrorCode)))
-                .andExpect(jsonPath("$.errorMessage", Matchers.is(productNotFoundErrorMessage)));
+                .andExpect(jsonPath("$.errorCode", Matchers.is(productNotFoundErrCode)))
+                .andExpect(jsonPath("$.errorMessage", Matchers.is(productNotFoundErrMessage)));
     }
 
     @Test
@@ -132,8 +142,8 @@ public class ProductControllerTest {
         mockMvc.perform(post("/api/v1/product/buy").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(2)))
-                .andExpect(jsonPath("$.errorCode", Matchers.is(productNotFoundErrorCode)))
-                .andExpect(jsonPath("$.errorMessage", Matchers.is(productNotFoundErrorMessage)));
+                .andExpect(jsonPath("$.errorCode", Matchers.is(productNotFoundErrCode)))
+                .andExpect(jsonPath("$.errorMessage", Matchers.is(productNotFoundErrMessage)));
     }
 
     @Test
@@ -143,18 +153,19 @@ public class ProductControllerTest {
         mockMvc.perform(post("/api/v1/product/buy").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(2)))
-                .andExpect(jsonPath("$.errorCode", Matchers.is(productOutOfQtyCode)))
-                .andExpect(jsonPath("$.errorMessage", Matchers.is(productOutOfQtyMessage)));
+                .andExpect(jsonPath("$.errorCode", Matchers.is(productOutOfQtyErrCode)))
+                .andExpect(jsonPath("$.errorMessage", Matchers.is(productOutOfQtyErrMessage)));
     }
 
     @Test
     public void testBuyProduct() throws Exception {
         mockMvc.perform(post("/api/v1/product/buy").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.*", Matchers.hasSize(3)))
+                .andExpect(jsonPath("$.*", Matchers.hasSize(4)))
                 .andExpect(jsonPath("$.productId", Matchers.is(1)))
                 .andExpect(jsonPath("$.qty", Matchers.is(3)))
-                .andExpect(jsonPath("$.remainingQty", Matchers.is(2)));
+                .andExpect(jsonPath("$.remainingQty", Matchers.is(2)))
+                .andExpect(jsonPath("$.price", Matchers.is(10000)));
     }
 
     @Test
@@ -164,7 +175,7 @@ public class ProductControllerTest {
         mockMvc.perform(post("/api/v1/product/buy").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().is5xxServerError())
                 .andExpect(jsonPath("$.*", Matchers.hasSize(2)))
-                .andExpect(jsonPath("$.errorCode", Matchers.is(exceptionCode)))
-                .andExpect(jsonPath("$.errorMessage", Matchers.is(exceptionMessage)));
+                .andExpect(jsonPath("$.errorCode", Matchers.is(genericErrCode)))
+                .andExpect(jsonPath("$.errorMessage", Matchers.is(genericErrMessage)));
     }
 }
