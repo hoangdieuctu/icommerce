@@ -1,0 +1,26 @@
+port: 9092
+
+# Database
+spring:
+  datasource:
+    url: jdbc:h2:mem:product
+    driverClassName: org.h2.Driver
+    username: sa
+    password: pw
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+# Service custom
+error:
+  productNotFound:
+    code: 10010
+    message: Product not found
+  productOutOfQty:
+    code: 10011
+    message: Product qty is not enough
+  exception:
+    code: 10000
+    message: Internal error
