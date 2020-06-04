@@ -61,15 +61,6 @@ public class ProductFilter extends AbstractGatewayFilterFactory<ProductFilter.Co
 
 
     public static class Config {
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
     }
 
 }
