@@ -6,25 +6,49 @@ To manage and make the users be satisfied, all the user activities related to th
 
 
 ### Table of Contents
-**[System Architecture](#system-architecture)**<br>
 **[Entity Relationship Diagram](#entity-relationship-diagram)**<br>
+**[System Architecture](#system-architecture)**<br>
+**[System Workflow](#system-workflow)**<br>
+**[Configuration Repository](#configuration-repository)**<br>
 **[Service Details](#service-details)**<br>
+**[Main Workflow](#main-workflow)**<br>
 **[How To Run](#how-to-run)**<br>
 **[Generated Data](#generated-data)**<br>
 **[CURL Commands](#curl-commands)**<br>
 **[Improvements](#improvements)**<br>
 
-## System Architecture
+## Entity Relationship Diagram
+![picture](erd.png)
 
+## System Architecture
 ![picture](system-architecture.png)
 
-## Entity Relationship Diagram
 
-![picture](erd.png)
+## System Workflow
+![picture](system-workflow.png)
+
+## Configuration Repository
+To manage and share the configuration between the micro services, configuration repository is required for the entire system.
+Link: [icommerce-config](https://github.com/hoangdieuctu/icommerce-config)
+
+The repository contains the configuration of all services with 'default' profile.
+
+Structure
+```bash
+apigateway-default.yml
+application-default.yml
+authenticationservice-default.yml
+eurekaserver-default.yml
+productservice-default.yml
+shoppingcartservice-default.yml
+```
 
 ## Service Details
 
 ### Authentication Service
+
+#### Dependencies
+#### Code folders
 
 ### Product Service
 
@@ -35,6 +59,8 @@ To manage and make the users be satisfied, all the user activities related to th
 ### Config Server
 
 ### Eureka Server
+
+## Main Workflow
 
 ## How To Run
 
