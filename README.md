@@ -53,14 +53,8 @@ The project description, structure and dependencies will be in each project fold
 
 
 ## How To Run
-Make sure that the local machine already installed java8 (at least) and maven.<br>
+Make sure that the machine already installed java 8 (at least) and maven.<br>
 The services should be started by the order.
-
-*[By Local Machine](#by-local-machine)*<br>
-*[By Docker](#by-docker)*<br>
-
-### By Local Machine
-Make sure open the command line in correct folder.
 
 #### Run Config Server
 ```bash
@@ -97,8 +91,6 @@ java -jar target/productservice-*.jar
 mvn clean install
 java -jar target/shoppingcartservice-*.jar
 ``` 
-
-### By Docker
 
 ## Generated Data
 For testing purpose, when starting the services, there are some data is generated (based on the configuration) as the table below.
