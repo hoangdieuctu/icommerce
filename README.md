@@ -10,7 +10,6 @@ To manage and make the users be satisfied, all the user activities related to th
 **[System Workflow](#system-workflow)**<br>
 **[Configuration Repository](#configuration-repository)**<br>
 **[Service Details](#service-details)**<br>
-**[Main Workflow](#main-workflow)**<br>
 **[How To Run](#how-to-run)**<br>
 **[Generated Data](#generated-data)**<br>
 **[CURL Commands](#curl-commands)**<br>
@@ -32,12 +31,12 @@ The repository contains the configuration of all services with '**default**' pro
 
 **Structure**
 ```bash
-apigateway-default.yml
-application-default.yml
-authenticationservice-default.yml
-eurekaserver-default.yml
-productservice-default.yml
-shoppingcartservice-default.yml
+├── apigateway-default.yml
+├── application-default.yml
+├── authenticationservice-default.yml
+├── eurekaserver-default.yml
+├── productservice-default.yml
+└── shoppingcartservice-default.yml
 ```
 
 ## Service Details
@@ -117,23 +116,25 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 ```
 
 ### Search products
-Make sure the authorization is replaced by the new token.
+*Make sure the authorization is replaced by the new token.*
 ```bash
 curl -d '{"branch":"Apple","price":{"from":10000000,"to":90000000},"sort":{"sortBy":"branch","orderBy":"asc"}}' -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X POST http://localhost:8080/api/v1/product/search
 ```
 
 ### Get a product
-Make sure the authorization is replaced by the new token.
+*Make sure the authorization is replaced by the new token.*
 ```bash
 curl -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X GET http://localhost:8080/api/v1/product/1
 ```
 
 ### Add a product to the shopping cart
+*Make sure the authorization is replaced by the new token.*
 ```bash
 curl -d '{"productId":2,"qty":1}' -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X POST http://localhost:8080/api/v1/shopping-cart
 ```
 
 ## Get current shopping cart
+*Make sure the authorization is replaced by the new token.*
 ```bash
 curl -d -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X GET http://localhost:8080/api/v1/shopping-cart
 ```
