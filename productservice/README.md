@@ -65,3 +65,17 @@ spring-cloud-starter-netflix-eureka-client
 spring-boot-starter-web
 spring-boot-starter-data-jpa
 ```
+
+## Generated Data
+For testing purpose, when the service starting it will generate some products as table below:
+
+| id | name | color | branch | description | price | qty |
+| -- | -- | -- | -- | -- | -- | -- |
+| 1 | MacBook Pro 2013 | White | Apple | Apply MacBook Pro 2013 13 Inch | 43000000 | 20 |
+| -- | -- | -- | -- | -- | -- | -- |
+| 2 | MacBook Air 2017 | White | Apple | Apply MacBook Air 2017 13 Inch | 30000000 | 5 |
+| -- | -- | -- | -- | -- | -- | -- |
+| 3 | Dell Vostro 3590 | Black | Dell | Core i7 - 8GB RAM | 35000000 | 7 |
+| -- | -- | -- | -- | -- | -- | -- |
+| 4 | Acer Predator | Black | Acer | Triton 500 - 8GB RAM | 79900000 | 2 |
+
