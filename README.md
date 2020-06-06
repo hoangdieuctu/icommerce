@@ -11,6 +11,8 @@ To manage and make the users be satisfied, all the user activities related to th
 **[Configuration Repository](#configuration-repository)**<br>
 **[Service Details](#service-details)**<br>
 **[How To Run](#how-to-run)**<br>
+    **[By Local Machine](#by-local-machine)**<br>
+    **[By Docker](#by-docker)**<br>
 **[Generated Data](#generated-data)**<br>
 **[CURL Commands](#curl-commands)**<br>
 
