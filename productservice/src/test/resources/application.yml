@@ -1,5 +1,10 @@
 port: 9092
 
+# Disable eureka
+eureka:
+  client:
+    enabled: false
+
 # Database
 spring:
   datasource:
