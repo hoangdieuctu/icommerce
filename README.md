@@ -135,5 +135,5 @@ curl -d '{"productId":2,"qty":1}' -H "Content-Type: application/json" -H "Author
 ## Get current shopping cart
 *Make sure the authorization is replaced by the new token.*
 ```bash
-curl -d -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X GET http://localhost:8080/api/v1/shopping-cart
+curl -H "Content-Type: application/json" -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNTkxNDI5MjYzLCJpc3MiOiJodHRwOi8vaWNvbW1lcmNlLmNvbSIsImV4cCI6MTU5MTQzMjg2M30.RtuIjc2QgyNw2IzINZn5gcOsG1hPmiLbbnosU7bpFUw" -X GET http://localhost:8080/api/v1/shopping-cart
 ```
