@@ -1,36 +1,67 @@
+# Product Service
+The service for manage all the products. Allow searching, filtering and view detail of a product.
 
-
-
-## Query ##
-
-1. Search products
-
-Request
-```json
-{
-	"branch": "Apple",
-	"price": {
-		"from": 30000000,
-		"to": 40000000
-	},
-	"sort": {
-		"sortBy": "branch",
-		"orderBy": "asc"
-	}
-}
+## Project Structure
+```bash
+├── Dockerfile
+├── README.md
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── icommerce
+    │   │           └── productservice
+    │   │               ├── ServerApplication.java
+    │   │               ├── advice
+    │   │               │   └── CustomExceptionHandler.java
+    │   │               ├── controller
+    │   │               │   └── ProductController.java
+    │   │               ├── dto
+    │   │               │   ├── request
+    │   │               │   │   ├── Order.java
+    │   │               │   │   ├── PriceCriteria.java
+    │   │               │   │   ├── ProductCriteria.java
+    │   │               │   │   ├── ProductRequest.java
+    │   │               │   │   └── Sort.java
+    │   │               │   └── response
+    │   │               │       ├── ErrorResponse.java
+    │   │               │       └── ProductResponse.java
+    │   │               ├── exception
+    │   │               │   ├── ProductException.java
+    │   │               │   ├── ProductNotFoundException.java
+    │   │               │   └── ProductOutOfQtyException.java
+    │   │               ├── generator
+    │   │               │   └── ProductGenerator.java
+    │   │               ├── model
+    │   │               │   └── Product.java
+    │   │               ├── repository
+    │   │               │   └── ProductRepository.java
+    │   │               └── service
+    │   │                   ├── ProductService.java
+    │   │                   └── impl
+    │   │                       └── ProductServiceImpl.java
+    │   └── resources
+    │       ├── application.yml
+    │       └── bootstrap.yml
+    └── test
+        ├── java
+        │   └── com
+        │       └── icommerce
+        │           └── productservice
+        │               ├── controller
+        │               │   └── ProductControllerTest.java
+        │               └── service
+        │                   ├── ProductServiceSpringTest.java
+        │                   └── ProductServiceTest.java
+        └── resources
+            └── application.yml
 ```
 
-Response
-```json
-[
-    {
-        "id": 2,
-        "name": "MacBook Air 2017",
-        "branch": "Apple",
-        "color": "White",
-        "description": "Apply MacBook Air 2017 13 Inch",
-        "buyPrice": 30000000,
-        "qtyInStock": 5
-    }
-]
+## Dependencies
+```
+spring-cloud-starter-config
+spring-cloud-starter-netflix-eureka-client
+spring-boot-starter-web
+spring-boot-starter-data-jpa
 ```

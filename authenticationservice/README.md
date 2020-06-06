@@ -1,7 +1,7 @@
 # Authentication Service
 Authenticate user and generate token for using with the Api Gateway.
 
-## Supported Methods
+## Supported Login Methods
 List out all supported authentication methods.
 
 ### Login by Facebook
@@ -77,5 +77,6 @@ GET
 spring-cloud-starter-config
 spring-cloud-starter-netflix-eureka-client
 spring-boot-starter-web
+spring-boot-starter-data-jpa
 jjwt
 ```
