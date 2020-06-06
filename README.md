@@ -10,10 +10,7 @@ To manage and make the users be satisfied, all the user activities related to th
 **[System Workflow](#system-workflow)**<br>
 **[Configuration Repository](#configuration-repository)**<br>
 **[Service Details](#service-details)**<br>
-**[How To Run](#how-to-run)**
-  * [By Local Machine](#by-local-machine)
-  * [By Docker](#by-docker)
-  
+**[How To Run](#how-to-run)**<br>
 **[Generated Data](#generated-data)**<br>
 **[CURL Commands](#curl-commands)**<br>
 
