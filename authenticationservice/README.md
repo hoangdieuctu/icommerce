@@ -27,13 +27,79 @@ GET
 
 ## Project Structure
 ```bash
-|---- com.icommerce.authenticationservice
-|     |-- constant
-|     |-- controller
-|     |-- dto
-|     |-- model
-|     |-- repository
-|     |-- service
-|     |   |-- impl
-|     |-- ServerApplication
+├── Dockerfile
+├── README.md
+├── pom.xml
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── icommerce
+    │   │           └── authenticationservice
+    │   │               ├── ServerApplication.java
+    │   │               ├── constant
+    │   │               │   └── Constants.java
+    │   │               ├── controller
+    │   │               │   └── AuthController.java
+    │   │               ├── dto
+    │   │               │   └── JwtDto.java
+    │   │               ├── model
+    │   │               │   └── User.java
+    │   │               ├── repository
+    │   │               │   └── UserRepository.java
+    │   │               └── service
+    │   │                   ├── AuthService.java
+    │   │                   ├── JwtService.java
+    │   │                   ├── UserService.java
+    │   │                   └── impl
+    │   │                       ├── AuthServiceImpl.java
+    │   │                       ├── JwtServiceImpl.java
+    │   │                       └── UserServiceImpl.java
+    │   └── resources
+    │       ├── application.yml
+    │       └── bootstrap.yml
+    └── test
+        └── java
+            └── com
+                └── icommerce
+                    └── authenticationservice
+                        ├── controller
+                        │   └── AuthControllerTest.java
+                        └── service
+                            ├── AuthServiceTest.java
+                            ├── JwtServiceTest.java
+                            └── UserServiceTest.java
+
+```
+
+## Dependencies
+```
+spring-cloud-starter-config
+spring-cloud-starter-netflix-eureka-client
+spring-boot-starter-web
+jjwt
+```
+
+## How To Run
+### By Local Machine
+Make sure that the local machine already installed java8 (at least) and maven.
+
+**Build project**
+```bash
+mvn clean install
+```
+
+**Run project**
+```bash
+java -jar target/authenticationservice-*.jar
+```
+
+### By Docker
+Create docker image
+```bash
+docker build -t icommerce/authenticationservice .
+```
+Run project by docker
+```bash
+docker run -p 9091:9091 -d --name authenticationservice icommerce/authenticationservice
 ```
