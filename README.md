@@ -44,13 +44,12 @@ The project description, structure and dependencies will be in each project fold
 
 **Service folders**
 
-├── [apigateway](https://github.com/hoangdieuctu/icommerce/tree/master/apigateway)<br>
-├── [authenticationservice](https://github.com/hoangdieuctu/icommerce/tree/master/authenticationservice)<br>
-├── [configserver](https://github.com/hoangdieuctu/icommerce/tree/master/configserver)<br>
-├── [eurekaserver](https://github.com/hoangdieuctu/icommerce/tree/master/eurekaserver)<br>
-├── [productservice](https://github.com/hoangdieuctu/icommerce/tree/master/productservice)<br>
-└── [shoppingcartservice](https://github.com/hoangdieuctu/icommerce/tree/master/shoppingcartservice)<br>
-
+[apigateway](https://github.com/hoangdieuctu/icommerce/tree/master/apigateway)<br>
+[authenticationservice](https://github.com/hoangdieuctu/icommerce/tree/master/authenticationservice)<br>
+[configserver](https://github.com/hoangdieuctu/icommerce/tree/master/configserver)<br>
+[eurekaserver](https://github.com/hoangdieuctu/icommerce/tree/master/eurekaserver)<br>
+[productservice](https://github.com/hoangdieuctu/icommerce/tree/master/productservice)<br>
+[shoppingcartservice](https://github.com/hoangdieuctu/icommerce/tree/master/shoppingcartservice)<br>
 
 ## How To Run
 Make sure that the machine already installed java 8 (at least) and maven.<br>
