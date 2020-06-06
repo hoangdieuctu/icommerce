@@ -79,27 +79,3 @@ spring-cloud-starter-netflix-eureka-client
 spring-boot-starter-web
 jjwt
 ```
-
-## How To Run
-### By Local Machine
-Make sure that the local machine already installed java8 (at least) and maven.
-
-**Build project**
-```bash
-mvn clean install
-```
-
-**Run project**
-```bash
-java -jar target/authenticationservice-*.jar
-```
-
-### By Docker
-Create docker image
-```bash
-docker build -t icommerce/authenticationservice .
-```
-Run project by docker
-```bash
-docker run -p 9091:9091 -d --name authenticationservice icommerce/authenticationservice
-```
