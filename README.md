@@ -24,7 +24,7 @@ To manage and make the users be satisfied, all the user activities related to th
 ![picture](system-workflow.png)
 
 ## Configuration Repository
-To manage and share the configuration between the micro services, configuration repository is required for the entire system.
+To manage and share the configuration between the micro services, configuration repository is required for the entire system.<br>
 Repo: [icommerce-config](https://github.com/hoangdieuctu/icommerce-config)
 
 The repository contains the configuration of all services with '**default**' profile.
@@ -43,20 +43,23 @@ The repository contains the configuration of all services with '**default**' pro
 The project description, structure and dependencies will be in each project folder. 
 
 **Service folders**
-```bash
-├── apigateway
-├── authenticationservice
-├── configserver
-├── eurekaserver
-├── productservice
-└── shoppingcartservice
-```
+
+├── [apigateway](https://github.com/hoangdieuctu/icommerce/tree/master/apigateway)<br>
+├── [authenticationservice](https://github.com/hoangdieuctu/icommerce/tree/master/authenticationservice)<br>
+├── [configserver](https://github.com/hoangdieuctu/icommerce/tree/master/configserver)<br>
+├── [eurekaserver](https://github.com/hoangdieuctu/icommerce/tree/master/eurekaserver)<br>
+├── [productservice](https://github.com/hoangdieuctu/icommerce/tree/master/productservice)<br>
+└── [shoppingcartservice](https://github.com/hoangdieuctu/icommerce/tree/master/shoppingcartservice)<br>
+
 
 ## How To Run
 Make sure that the local machine already installed java8 (at least) and maven.<br>
 The services should be started by the order.
 
-### Run On Local Machine
+*[By Local Machine](#by-local-machine)*<br>
+*[By Docker](#by-docker)*<br>
+
+### By Local Machine
 Make sure open the command line in correct folder.
 
 #### Run Config Server
@@ -109,6 +112,11 @@ For testing purpose, when starting the services, there are some data is generate
 | 4 | Acer Predator | Black | Acer | Triton 500 - 8GB RAM | 79900000 | 2 |
 
 ## CURL Commands
+Before testing, make sure all services are up and registered to Eureka Server correctly.
+
+Access Eureka Server: http://localhost:9090/
+
+
 ### Login by Facebook
 Return the jwt token that use for the requests later.
 ```bash
