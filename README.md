@@ -1,8 +1,8 @@
 # iCommerce
 
-An online shopping application to sell the products. <br>
-User can search the products they wants and add to a shopping cart and proceed to place an order.<br>
-To manage and make the users be satisfied, all the user activities related to the products such as find, view detail information of a product will be stored, visualize and report so that the company will know which is the most likely products and the others.
+An online shopping application which sell the products. <br>
+User can search the products they want then add to a shopping cart and proceed to place an order.<br>
+To manage and make the users be satisfied, all the users' activities are related to the products such as finding, filtering, viewing detail information a product will be stored.
 
 ### Table of Contents
 **[Entity Relationship Diagram](#entity-relationship-diagram)**<br>
@@ -53,7 +53,7 @@ The project description, structure and dependencies will be in each project fold
 [swaggerservice](https://github.com/hoangdieuctu/icommerce/tree/master/swaggerservice)<br>
 
 ## How To Run
-Make sure that the machine already installed java 8 (at least) and maven.<br>
+Make sure that the machine installed java 8 (at least) and maven.<br>
 The services should be started by the order.
 
 #### Run Config Server
