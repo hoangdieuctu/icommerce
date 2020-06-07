@@ -2,7 +2,7 @@
 
 An online shopping application which sell the products. <br>
 User can search the products they want then add to a shopping cart and proceed to place an order.<br>
-To manage and make the users be satisfied, all the users' activities are related to the products such as finding, filtering, viewing detail information a product will be stored.
+To manage and make the users satisfied, all the users' activities are related to the products such as finding, filtering, viewing detail information will be stored.
 
 ### Table of Contents
 **[Entity Relationship Diagram](#entity-relationship-diagram)**<br>
@@ -101,7 +101,7 @@ java -jar target/swaggerservice-*.jar
 ``` 
 
 ## Generated Data
-For testing purpose, when starting the services, there are some data is generated (based on the configuration) as the table below.
+For testing purpose, when starting the services, there are some data are generated (based on the configuration) as the table below.
 
 ### Products
 | id | name | color | branch | description | price | qty |
