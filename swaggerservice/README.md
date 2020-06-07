@@ -1,9 +1,9 @@
 # Swagger Service
-A centralize swagger for all services.
+A centralized swagger for all services.
 
 ## The problem
 The swagger is already implemented for each services.<br>
-However, each service will have its own endpoint and to access the Swagger-UI and we have to use a different URL for different services.
+However, each service will have its own endpoint and to access the swagger-ui and we have to use a different url for different services.
 
 ## Solution
 - Allow CORS of all services.
@@ -28,13 +28,13 @@ However, each service will have its own endpoint and to access the Swagger-UI an
         │               │   └── SwaggerConfig.java
         │               ├── controller
         │               │   └── SwaggerController.java
-        │               ├── service
-        │               │   └── ServiceDefinitionUpdater.java
-        │               └── swagger
-        │                   └── ServiceDefinitionHolder.java
+        │               └── service
+        │                   ├── ServiceDefinitionHolder.java
+        │                   └── ServiceDefinitionUpdater.java
         └── resources
             ├── application.yml
             └── bootstrap.yml
+
 ```
 
 ## Dependencies

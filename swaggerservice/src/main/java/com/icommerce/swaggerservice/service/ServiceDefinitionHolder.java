@@ -1,4 +1,4 @@
-package com.icommerce.swaggerservice.swagger;
+package com.icommerce.swaggerservice.service;
 
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;

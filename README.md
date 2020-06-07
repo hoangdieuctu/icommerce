@@ -50,6 +50,7 @@ The project description, structure and dependencies will be in each project fold
 [eurekaserver](https://github.com/hoangdieuctu/icommerce/tree/master/eurekaserver)<br>
 [productservice](https://github.com/hoangdieuctu/icommerce/tree/master/productservice)<br>
 [shoppingcartservice](https://github.com/hoangdieuctu/icommerce/tree/master/shoppingcartservice)<br>
+[swaggerservice](https://github.com/hoangdieuctu/icommerce/tree/master/swaggerservice)<br>
 
 ## How To Run
 Make sure that the machine already installed java 8 (at least) and maven.<br>
@@ -89,6 +90,14 @@ java -jar target/productservice-*.jar
 ```bash
 mvn clean install
 java -jar target/shoppingcartservice-*.jar
+``` 
+
+#### Run Swagger Service
+The swagger service is a centralized swagger tool for all services.<br>
+Access: http://localhost:8085/swagger-ui.html
+```bash
+mvn clean install
+java -jar target/swaggerservice-*.jar
 ``` 
 
 ## Generated Data

@@ -1,6 +1,6 @@
 package com.icommerce.swaggerservice.config;
 
-import com.icommerce.swaggerservice.swagger.ServiceDefinitionHolder;
+import com.icommerce.swaggerservice.service.ServiceDefinitionHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

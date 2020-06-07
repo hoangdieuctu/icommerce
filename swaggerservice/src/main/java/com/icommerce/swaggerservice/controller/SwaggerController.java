@@ -1,6 +1,6 @@
 package com.icommerce.swaggerservice.controller;
 
-import com.icommerce.swaggerservice.swagger.ServiceDefinitionHolder;
+import com.icommerce.swaggerservice.service.ServiceDefinitionHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

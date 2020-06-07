@@ -1,6 +1,5 @@
 package com.icommerce.swaggerservice.service;
 
-import com.icommerce.swaggerservice.swagger.ServiceDefinitionHolder;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.netflix.discovery.shared.Applications;
