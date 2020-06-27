@@ -36,6 +36,7 @@ It also store the audit information by using the filters.
 ```
 spring-cloud-starter-config
 spring-cloud-starter-netflix-eureka-client
+spring-cloud-starter-zipkin
 spring-cloud-starter-gateway
 spring-boot-starter-data-jpa
 jjwt

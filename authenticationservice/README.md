@@ -76,6 +76,7 @@ GET
 ```
 spring-cloud-starter-config
 spring-cloud-starter-netflix-eureka-client
+spring-cloud-starter-zipkin
 spring-boot-starter-web
 spring-boot-starter-data-jpa
 jjwt

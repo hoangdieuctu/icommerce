@@ -10,3 +10,5 @@ By default, it will run on port: 9411
 ```bash
 java -jar zipkinserver.jar
 ```
+
+Access: http://localhost:9411/

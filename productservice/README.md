@@ -62,6 +62,7 @@ The service for manage all the products. Allow searching, filtering and view det
 ```
 spring-cloud-starter-config
 spring-cloud-starter-netflix-eureka-client
+spring-cloud-starter-zipkin
 spring-boot-starter-web
 spring-boot-starter-data-jpa
 ```

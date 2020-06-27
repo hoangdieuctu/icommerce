@@ -48,6 +48,7 @@ The project description, structure and dependencies will be in each project fold
 [authenticationservice](https://github.com/hoangdieuctu/icommerce/tree/master/authenticationservice)<br>
 [configserver](https://github.com/hoangdieuctu/icommerce/tree/master/configserver)<br>
 [eurekaserver](https://github.com/hoangdieuctu/icommerce/tree/master/eurekaserver)<br>
+[zipkinserver](https://github.com/hoangdieuctu/icommerce/tree/master/zipkinserver)<br>
 [productservice](https://github.com/hoangdieuctu/icommerce/tree/master/productservice)<br>
 [shoppingcartservice](https://github.com/hoangdieuctu/icommerce/tree/master/shoppingcartservice)<br>
 [swaggerservice](https://github.com/hoangdieuctu/icommerce/tree/master/swaggerservice)<br>
@@ -66,6 +67,13 @@ java -jar target/configserver-*.jar
 ```bash
 mvn clean install
 java -jar target/eurekaserver-*.jar
+```
+
+#### Run Zip Server
+The place to trace the request through all services.
+Access: http://localhost:9411
+```bash
+java -jar zipkinserver.jar
 ```
 
 #### Run API Gateway
