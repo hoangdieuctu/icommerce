@@ -70,7 +70,7 @@ java -jar target/eurekaserver-*.jar
 ```
 
 #### Run Zip Server
-The place to trace the request through all services.
+The place to trace the requests through all services.<br>
 Access: http://localhost:9411
 ```bash
 java -jar zipkinserver.jar
