@@ -14,6 +14,14 @@ This allows us to correlate activity between servers and get a much clearer pict
 java -jar zipkinserver.jar
 ```
 
+**Client config**<br>
+*By default, the client will use http://localhost:9411*
+```yaml
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411
+```
+
 **Access**<br>
 ```
 http://localhost:9411
